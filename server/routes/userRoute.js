@@ -17,7 +17,7 @@ router.post('/signin', async (req, res) => {
       token: getToken(signInUser),
     });
   } else {
-    res.send({ message: 'User not found' });
+    res.status(401).send({ message: 'User not found' });
   }
 });
 
@@ -36,7 +36,7 @@ router.post('/register', async (req, res) => {
     const newUser = await registerUser.save();
     res.send(newUser);
   } catch (error) {
-    res.send({ message: error.message });
+    res.status(401).send({ message: error.message });
   }
 });
 

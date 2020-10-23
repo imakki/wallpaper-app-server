@@ -18,10 +18,6 @@ router.get('/', async (req, res) => {
   } catch (error) {
     res.send({ message: error.message });
   }
-  //res.json(images);
-  //   Image.find({}, (error, docs) => {
-  //     res.send(docs);
-  //   });
 });
 
 export default router;

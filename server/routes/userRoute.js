@@ -1,13 +1,12 @@
 import express from 'express';
 import User from '../models/userModel';
-import { getToken } from '../util';
+import { getToken, isAuth } from '../util';
 const router = express.Router();
 
 // User Sign in
 router.post('/signin', async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-
   const signInUser = await User.findOne({ email, password });
   if (signInUser) {
     res.send({
@@ -41,7 +40,7 @@ router.post('/register', async (req, res) => {
 });
 
 //user favourite image
-router.post('/favimage/:id', async (req, res) => {
+router.post('/favimage/:id', isAuth, async (req, res) => {
   const { id } = req.params;
   const { imageId } = req.body;
   //console.log(id, imageId);
@@ -62,7 +61,7 @@ router.post('/favimage/:id', async (req, res) => {
 });
 
 //get fav images
-router.get('/getfavimag/:id', async (req, res) => {
+router.get('/getfavimag/:id', isAuth, async (req, res) => {
   const { id } = req.params;
   //console.log(id);
   User.findOne({ _id: id })

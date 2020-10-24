@@ -1,8 +1,9 @@
 import express from 'express';
 import Image from '../models/ImageModel';
 const router = express.Router();
+import { isAuth } from '../util';
 
-router.get('/', async (req, res) => {
+router.get('/', isAuth, async (req, res) => {
   const { page = 1, limit = 10 } = req.query;
   try {
     const images = await Image.find()

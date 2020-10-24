@@ -2,7 +2,6 @@ import express from 'express';
 import mongoose from 'mongoose';
 import userRoute from './routes/userRoute';
 import imageRoute from './routes/imageRoute';
-import favouriteImage from './routes/favouriteImage';
 import bodyParser from 'body-parser';
 const cors = require('cors');
 require('dotenv').config();

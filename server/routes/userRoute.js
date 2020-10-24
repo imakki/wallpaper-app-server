@@ -40,4 +40,36 @@ router.post('/register', async (req, res) => {
   }
 });
 
+//user favourite image
+router.post('/favimage/:id', async (req, res) => {
+  const { id } = req.params;
+  const { imageId } = req.body;
+
+  //console.log(id, imageId);
+  User.findOne({ _id: id }, async function (err, user) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      res.send();
+    }
+    if (!user.favouriteImage.includes(imageId)) {
+      user.favouriteImage.push(imageId);
+    }
+
+    user.save();
+    res.send(user);
+  });
+});
+
+//get fav images
+router.get('/getfavimag/:id', async (req, res) => {
+  const { id } = req.params.id;
+  User.findOne({ _id: id })
+    .populate('favouriteImage')
+    .exec((err, images) => {
+      console.log(images);
+    });
+});
+
 export default router;

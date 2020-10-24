@@ -44,7 +44,6 @@ router.post('/register', async (req, res) => {
 router.post('/favimage/:id', async (req, res) => {
   const { id } = req.params;
   const { imageId } = req.body;
-
   //console.log(id, imageId);
   User.findOne({ _id: id }, async function (err, user) {
     if (err) {
@@ -58,17 +57,27 @@ router.post('/favimage/:id', async (req, res) => {
     }
 
     user.save();
-    res.send(user);
+    res.send({ message: 'image added to favourites.' });
   });
 });
 
 //get fav images
 router.get('/getfavimag/:id', async (req, res) => {
-  const { id } = req.params.id;
+  const { id } = req.params;
+  //console.log(id);
   User.findOne({ _id: id })
     .populate('favouriteImage')
-    .exec((err, images) => {
-      console.log(images);
+    .exec(function (err, images) {
+      if (!images.favouriteImage) {
+        res.send({ message: 'No favourite images for this user!' });
+      }
+      if (images) {
+        res.send(images.favouriteImage);
+      }
+
+      if (err) {
+        res.send({ error: err.message });
+      }
     });
 });
 

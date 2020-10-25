@@ -5,7 +5,7 @@ import imageRoute from './routes/imageRoute';
 import bodyParser from 'body-parser';
 const cors = require('cors');
 require('dotenv').config();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8080;
 mongoose
   .connect(process.env.MONGO_DB_URI, {
     useNewUrlParser: true,

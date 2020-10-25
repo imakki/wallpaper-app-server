@@ -5,7 +5,7 @@ import imageRoute from './routes/imageRoute';
 import bodyParser from 'body-parser';
 const cors = require('cors');
 require('dotenv').config();
-
+const PORT = process.env.PORT || 8000;
 mongoose
   .connect(process.env.MONGO_DB_URI, {
     useNewUrlParser: true,
@@ -24,5 +24,5 @@ app.use('/api/users', userRoute);
 app.use('/api/images', imageRoute);
 
 app.listen(process.env.PORT, () => {
-  console.log(`Server started at port ${process.env.PORT || 8000}`);
+  console.log(`Server started at port ${PORT}`);
 });

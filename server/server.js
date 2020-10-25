@@ -24,5 +24,5 @@ app.use('/api/users', userRoute);
 app.use('/api/images', imageRoute);
 
 app.listen(process.env.PORT, () => {
-  console.log(`Server started at port ${process.env.PORT}`);
+  console.log(`Server started at port ${process.env.PORT || 8000}`);
 });

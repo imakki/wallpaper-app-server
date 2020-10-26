@@ -23,6 +23,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+app.get('/', (req, res) => {
+  res.send('welcome to wallpaper app');
+});
+
 app.use('/api/users', userRoute);
 app.use('/api/images', imageRoute);
 

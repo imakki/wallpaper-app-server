@@ -1,5 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+
 import userRoute from './routes/userRoute';
 import imageRoute from './routes/imageRoute';
 import bodyParser from 'body-parser';

@@ -1,1 +1,1 @@
-web: nodemon --watch server --exec babel-node server/server.js
+web: node dist-server/server.js

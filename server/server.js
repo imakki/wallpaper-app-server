@@ -19,9 +19,8 @@ mongoose
   .catch((error) => console.log(error));
 
 const app = express();
-
-app.use(bodyParser.json());
 app.use(cors());
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.send('welcome to wallpaper app');
